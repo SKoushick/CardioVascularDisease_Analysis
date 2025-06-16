@@ -82,11 +82,11 @@ model = load_model()
 # Sidebar navigation buttons as individual buttons
 st.sidebar.title("🩺 Cardiovascular App Navigation")
 nav_buttons = {
-    "🏠 Home": "Home",
-    "📊 Prediction": "Prediction",
-    "📈 Visualizations": "Visualizations",
-    "📋 Data Overview": "Data Overview",
-    "ℹ️ About": "About"
+    "Home": "Home",
+    "Prediction": "Prediction",
+    "Visualizations": "Visualizations",
+    "Data Overview": "Data Overview",
+    "About": "About"
 }
 
 if "page" not in st.session_state:
