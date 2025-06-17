@@ -186,7 +186,8 @@ elif page == "Prediction":
     # Predict using the GridSearchCV or Pipeline model
         prediction = model.predict(input_data)
         st.write("Input shape:", input_data.shape)
-        st.write("Prediction:", prediction)
+        st.write("Input dtype:", input_data.dtype)
+
 
 
         st.header("Predicted Result")
