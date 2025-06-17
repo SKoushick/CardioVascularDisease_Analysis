@@ -178,7 +178,7 @@ elif page == "Prediction":
 - 2 - High.
             """)
 
-   click = st.button('Predict')
+    click = st.button('Predict')
     if click:
     # Ensure the order of features matches the training data
         input_data = np.array([[Age, Gender, Height, Weight, Systolic_BP, Diastolic_BP, Cholesterol, Glucose, Alcohol, Activity]])
