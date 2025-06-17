@@ -178,10 +178,17 @@ elif page == "Prediction":
 - 2 - High.
             """)
 
-    click = st.button('Predict')
+   click = st.button('Predict')
     if click:
+    # Ensure the order of features matches the training data
         input_data = np.array([[Age, Gender, Height, Weight, Systolic_BP, Diastolic_BP, Cholesterol, Glucose, Alcohol, Activity]])
+
+    # Predict using the GridSearchCV or Pipeline model
         prediction = model.predict(input_data)
+        st.write("Input shape:", input_data.shape)
+        st.write("Prediction:", prediction)
+
+
         st.header("Predicted Result")
         if prediction[0] == 0:
             st.success("No possibility of heart attack detected.")
