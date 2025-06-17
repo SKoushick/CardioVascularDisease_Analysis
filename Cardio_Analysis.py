@@ -180,21 +180,36 @@ elif page == "Prediction":
 
     click = st.button('Predict')
     if click:
-    # Ensure the order of features matches the training data
-        input_data = np.array([[Age, Gender, Height, Weight, Systolic_BP, Diastolic_BP, Cholesterol, Glucose, Alcohol, Activity]])
+        try:
+        # Convert all inputs to float or int explicitly
+            Age = float(Age)
+            Gender = int(Gender)
+            Height = float(Height)
+            Weight = float(Weight)
+            Systolic_BP = float(Systolic_BP)
+            Diastolic_BP = float(Diastolic_BP)
+            Cholesterol = int(Cholesterol)
+            Glucose = int(Glucose)
+            Alcohol = int(Alcohol)
+            Activity = int(Activity)
 
-    # Predict using the GridSearchCV or Pipeline model
-        prediction = model.predict(input_data)
-        st.write("Input shape:", input_data.shape)
-        st.write("Input dtype:", input_data.dtype)
+        # Create input array in the correct shape
+            input_data = np.array([[Age, Gender, Height, Weight, Systolic_BP, Diastolic_BP, Cholesterol, Glucose, Alcohol, Activity]])
 
+        # Predict
+            prediction = model.predict(input_data)
 
+            st.header("Predicted Result")
+            if prediction[0] == 0:
+                st.success("No possibility of heart attack detected.")
+            else:
+                st.error("Future heart attack detected. Please consult a doctor.")
 
-        st.header("Predicted Result")
-        if prediction[0] == 0:
-            st.success("No possibility of heart attack detected.")
-        else:
-            st.error("Future heart attack detected. Please consult a doctor for further advice.")
+        except ValueError as ve:
+            st.error(f"Please make sure all inputs are numeric. Error: {ve}")
+        except Exception as e:
+            st.error(f"Prediction failed due to unexpected error: {e}")
+
 
 elif page == "Visualizations":
     st.title('Visualizations')
